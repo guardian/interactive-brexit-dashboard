@@ -1,0 +1,55 @@
+h1, h2, p {
+	max-width: 640px;
+	.content &{ @include gridOffsetLeft(); }
+}
+
+h1 {
+	
+	@include fs-headline(6);
+	font-weight: 500;
+	@media (min-width: map-get($mq-breakpoints, leftCol)) {
+	    font-size: 48px;
+	    line-height: 48px;
+	    
+	}
+	margin-top: 0;
+}
+
+h2 {
+	margin: 0;
+}
+
+h3 {
+	@include fs-header(4);
+	margin: 0;
+	a, a:hover, a:visited {
+		color: #fff;
+	}
+}
+
+p {
+    @include fs-bodyCopy(2);
+
+    &.featureLight {
+    	font-size: 24px;
+    	line-height: 28px;
+	    font-family: $f-serif-headline;
+	    font-weight: 100;
+	    color: #767676;
+    }
+}
+
+p.byline {
+	@include fs-bodyCopy(2);
+	@media (min-width: map-get($mq-breakpoints, tablet)) {
+		@include fs-bodyCopy(3);
+	}
+}
+
+p.standfirst {
+	@include fs-bodyCopy(2);
+	@media (min-width: map-get($mq-breakpoints, tablet)) {
+		@include fs-bodyCopy(3);
+	}
+		
+}

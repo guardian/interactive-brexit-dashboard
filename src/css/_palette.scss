@@ -1,0 +1,13 @@
+@import '../../bower_components/pasteup-palette/src/_palette.scss';
+
+@function colour($name) {
+    @return map-get($pasteup-palette, $name);
+}
+
+$blue: #1991c6;
+$yellow: #f8b847;
+$red: #ea3e59;
+$green: #269448;
+$darkgray: #333333;
+$mediumgray: #767676;
+$lightgray: #767676;

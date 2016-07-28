@@ -1,0 +1,93 @@
+.interactive-container {
+    padding: 10px;
+    margin: 0 auto;
+    overflow: auto;
+    @include mq(mobileLandscape) {
+        padding: 20px;
+    }
+
+    @each $bp in (tablet, desktop, leftCol, wide) {
+        @include mq($bp) {
+            max-width: map-get($mq-breakpoints, $bp);
+        }
+    }
+
+    .header & {
+    	padding-bottom: 20px;
+    	@media (min-width: map-get($mq-breakpoints, leftCol)) {
+    		min-height: 360px;
+    	}
+
+    }
+}
+
+.header-left {
+
+	
+	
+	@media (min-width: map-get($mq-breakpoints, leftCol)) {
+		width: 140px;
+		float: left;
+		margin-left: 20px;
+		border-top: 1px solid #333;
+		margin-top: 7px;
+	}
+
+	@media (min-width: map-get($mq-breakpoints, wide)) {
+		margin-left: 20px;
+		width: 220px;
+		float: left;
+	}
+	
+
+	.rio-logo {
+
+		width: 120px;
+
+
+		
+
+		@media (min-width: map-get($mq-breakpoints, tablet)) {
+			width: 140px;
+		}
+
+		@media (min-width: map-get($mq-breakpoints, wide)) {
+			width: 180px;
+		}
+	}
+
+	
+
+}
+
+.header-center {
+	width: 100%;
+
+	@media (min-width: map-get($mq-breakpoints, leftCol)) {
+		width: 620px;
+		float: left;
+		margin-left: 20px;
+	}
+
+}
+
+.iframe {
+	
+	width: 100%;
+
+	iframe {
+		width: 100%;
+	}
+
+	&.inline {
+		max-width: 640px;
+		@include gridOffsetLeft();
+	}
+
+	&.immersive {
+		//margin-left: -10px;
+    	//margin-right: -10px;
+		width: 100%;
+	}
+
+}

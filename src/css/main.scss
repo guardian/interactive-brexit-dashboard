@@ -1,0 +1,70 @@
+@import "fonts";
+@import "palette";
+@import "mq";
+@import "general";
+@import "share";
+
+@import "type";
+@import "layout";
+
+
+.interactive {
+	position: relative;
+
+	&:before, &:after {
+		background: rgba(51,51,51,0.05);
+		bottom: 0;
+		position: absolute;
+		content: ' ';
+		top: 0;
+	}
+
+	&:before {
+
+		left: 0;
+
+		@media (min-width: 740px) {
+			width: calc((100% - 740px)*.5);
+		}
+
+		@media (min-width: 1140px) {
+			width: calc((100% - 1140px)*.5);
+		}
+
+		@media (min-width: 1300px) {
+			width: calc((100% - 1300px)*.5);
+		}
+		
+	}
+
+	&:after {
+		
+		right: 0;
+
+		@media (min-width: 740px) {
+			width: calc((100% - 740px)*.5);
+		}
+
+		@media (min-width: 1140px) {
+			width: calc((100% - 1140px)*.5);
+		}
+
+		@media (min-width: 1300px) {
+			width: calc((100% - 1300px)*.5);
+		}
+	}
+
+
+}
+
+
+.interactive-row {
+    &.header {
+        background: $blue;
+        color: #fff;
+
+        background-size: contain;
+	    background-repeat: no-repeat;
+	    background-position: right;
+    }
+}
