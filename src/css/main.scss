@@ -27,6 +27,10 @@
 			width: calc((100% - 740px)*.5);
 		}
 
+		@media (min-width: 980px) {
+			width: calc((100% - 980px)*.5);
+		}
+
 		@media (min-width: 1140px) {
 			width: calc((100% - 1140px)*.5);
 		}
@@ -43,6 +47,10 @@
 
 		@media (min-width: 740px) {
 			width: calc((100% - 740px)*.5);
+		}
+
+		@media (min-width: 980px) {
+			width: calc((100% - 980px)*.5);
 		}
 
 		@media (min-width: 1140px) {

@@ -1,6 +1,6 @@
-const twitterBaseUrl = 'https://twitter.com/intent/tweet?text=';
-const facebookBaseUrl = 'https://www.facebook.com/dialog/feed?display=popup&app_id=741666719251986&redirect_uri=http://www.theguardian.com&link=';
-const googleBaseUrl = 'https://plus.google.com/share?url=';
+var twitterBaseUrl = 'https://twitter.com/intent/tweet?text=';
+var facebookBaseUrl = 'https://www.facebook.com/dialog/feed?display=popup&app_id=741666719251986&redirect_uri=http://www.theguardian.com&link=';
+var googleBaseUrl = 'https://plus.google.com/share?url=';
 
 function init() {
 
@@ -13,11 +13,11 @@ function init() {
 
 function onLoad(){
 
-	[].slice.apply(document.querySelectorAll('.interactive-share')).forEach(shareEl => {
+	[].slice.apply(document.querySelectorAll('.interactive-share')).forEach(function(shareEl){
 	    var network = shareEl.getAttribute('data-network');
 	    var url = shareEl.getAttribute('data-share-url');
 	    var text = shareEl.getAttribute('data-share-text');
-	    shareEl.addEventListener('click',() => share(network,url,text));
+	    shareEl.addEventListener('click',function(){ share(network,url,text)});
 	});
 }
 

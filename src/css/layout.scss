@@ -28,13 +28,11 @@
 	@media (min-width: map-get($mq-breakpoints, leftCol)) {
 		width: 140px;
 		float: left;
-		margin-left: 20px;
 		border-top: 1px solid #333;
 		margin-top: 7px;
 	}
 
 	@media (min-width: map-get($mq-breakpoints, wide)) {
-		margin-left: 20px;
 		width: 220px;
 		float: left;
 	}
@@ -72,6 +70,12 @@
 }
 
 .iframe {
+
+	&.immersive {
+		margin-left: -20px;
+		margin-right: 20px;
+		width: calc(100% + 40px);
+	}
 	
 	width: 100%;
 
@@ -84,10 +88,6 @@
 		@include gridOffsetLeft();
 	}
 
-	&.immersive {
-		//margin-left: -10px;
-    	//margin-right: -10px;
-		width: 100%;
-	}
+
 
 }

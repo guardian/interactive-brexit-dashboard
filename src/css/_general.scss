@@ -26,6 +26,10 @@ a {
 }
 
 
+div {
+    box-sizing: border-box;
+}
+
 .interactive-es6-headline {
 	@include fs-headline(5);
 }
@@ -52,10 +56,10 @@ a {
 
 @mixin gridOffsetLeft(){
     @media (min-width: map-get($mq-breakpoints, leftCol)) {
-        margin-left: 180px;
+        margin-left: 160px;
     }
 
     @media (min-width: map-get($mq-breakpoints, wide)) {
-        margin-left: 260px;
+        margin-left: 240px;
     }
 }
