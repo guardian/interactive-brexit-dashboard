@@ -23,18 +23,17 @@
 
 .rio-logo {
 
-	width: 120px;
-
-
-	
+	width: 100px;
+	margin-bottom: 20px;
 
 	@media (min-width: map-get($mq-breakpoints, tablet)) {
-		width: 140px;
+		width: 100px;
 	}
 
 	@media (min-width: map-get($mq-breakpoints, wide)) {
-		width: 180px;
+		width: 140px;
 	}
+
 }
 
 .header-left {
@@ -46,6 +45,7 @@
 		float: left;
 		border-top: 1px solid #333;
 		margin-top: 7px;
+		padding-top: 20px;
 	}
 
 	@media (min-width: map-get($mq-breakpoints, wide)) {

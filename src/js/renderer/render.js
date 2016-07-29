@@ -5,7 +5,8 @@ import { render, templates } from './renderHelpers'
 Handlebars.registerPartial({
     iframe: templates["iframe"],
     copy: templates["copy"],
-    footer: templates["footer"]
+    footer: templates["footer"],
+    logo: templates["logo"]
 });
 
 var template = Handlebars.compile(templates["main"]);

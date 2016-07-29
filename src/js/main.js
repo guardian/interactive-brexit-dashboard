@@ -24,12 +24,17 @@ function onLoad(){
 	    shareEl.addEventListener('click',function(){ share(network,url,text)});
 	});
 
-    reqwest({
-        url: 'https://interactive.guim.co.uk/docsdata-test/126uRle-0jKSnlKmCS6ighUA5Emx80LNh1CRZkAdv1WU.json',
-        type: 'json',
-        crossOrigin: true,
-        success: renderRelated
-    });
+    setTimeout(function(){
+        reqwest({
+            url: 'https://interactive.guim.co.uk/docsdata/126uRle-0jKSnlKmCS6ighUA5Emx80LNh1CRZkAdv1WU.json',
+            type: 'json',
+            crossOrigin: true,
+            success: renderRelated
+        });
+
+    }, 5000);
+
+    
 }
 
 function renderRelated(resp){
