@@ -21,6 +21,22 @@
     }
 }
 
+.rio-logo {
+
+	width: 120px;
+
+
+	
+
+	@media (min-width: map-get($mq-breakpoints, tablet)) {
+		width: 140px;
+	}
+
+	@media (min-width: map-get($mq-breakpoints, wide)) {
+		width: 180px;
+	}
+}
+
 .header-left {
 
 	
@@ -37,25 +53,6 @@
 		float: left;
 	}
 	
-
-	.rio-logo {
-
-		width: 120px;
-
-
-		
-
-		@media (min-width: map-get($mq-breakpoints, tablet)) {
-			width: 140px;
-		}
-
-		@media (min-width: map-get($mq-breakpoints, wide)) {
-			width: 180px;
-		}
-	}
-
-	
-
 }
 
 .header-center {

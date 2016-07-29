@@ -1,6 +1,10 @@
+import reqwest from 'reqwest'
+
 var twitterBaseUrl = 'https://twitter.com/intent/tweet?text=';
 var facebookBaseUrl = 'https://www.facebook.com/dialog/feed?display=popup&app_id=741666719251986&redirect_uri=http://www.theguardian.com&link=';
 var googleBaseUrl = 'https://plus.google.com/share?url=';
+
+var related_link ="<a href='{{url}}'><div class='related'><div class='related-image'><img src='{{smallImage}}' sizes='(max-width: 740px) 20vw, (max-width: 50em) 100vw' srcset='{{smallImage}} 140w, {{largeImage}} 500w'></div><div class='related-headline'><h2>{{headline}}</h2></div></div></a>";
 
 function init() {
 
@@ -19,6 +23,28 @@ function onLoad(){
 	    var text = shareEl.getAttribute('data-share-text');
 	    shareEl.addEventListener('click',function(){ share(network,url,text)});
 	});
+
+    reqwest({
+        url: 'https://interactive.guim.co.uk/docsdata-test/126uRle-0jKSnlKmCS6ighUA5Emx80LNh1CRZkAdv1WU.json',
+        type: 'json',
+        crossOrigin: true,
+        success: renderRelated
+    });
+}
+
+function renderRelated(resp){
+    //resp.sheets.links
+
+    console.log(resp.sheets.links)
+    var relatedHTML = '';
+
+    resp.sheets.links.forEach(function(d){
+        var html = related_link.replace('{{headline}}', d.headline).replace('{{url}}', d.url).replace(/{{smallImage}}/g, d.smallImage).replace(/{{largeImage}}/g, d.largeImage)
+        relatedHTML += html;
+    })
+
+    document.querySelector('.related-content').innerHTML = relatedHTML;
+
 }
 
 
