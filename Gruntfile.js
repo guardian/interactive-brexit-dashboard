@@ -64,7 +64,7 @@ module.exports = function(grunt) {
                 }
             },
             render: {
-                command: 'babel-node src/js/renderer/render.js'
+                command: './node_modules/.bin/babel-node src/js/renderer/render.js'
             }
         },
 
