@@ -32,7 +32,7 @@ function onLoad(){
             success: renderRelated
         });
 
-    }, 5000);
+    }, 3000);
 
     
 }
