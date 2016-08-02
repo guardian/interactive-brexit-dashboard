@@ -21,7 +21,7 @@ define([], function() {
           iframe = document.createElement('iframe');
           iframe.style.width = '100%';
           iframe.style.border = 'none';
-          iframe.height = '500'; // default height
+          iframe.height = '1200'; // default height
           iframe.src = url;
           el.style.margin = '0';
 
