@@ -4,7 +4,7 @@ var twitterBaseUrl = 'https://twitter.com/intent/tweet?text=';
 var facebookBaseUrl = 'https://www.facebook.com/dialog/feed?display=popup&app_id=741666719251986&redirect_uri=http://www.theguardian.com&link=';
 var googleBaseUrl = 'https://plus.google.com/share?url=';
 
-var related_link ="<a href='{{url}}'><div class='related'><div class='related-image'><img src='{{smallImage}}' sizes='(max-width: 740px) 20vw, (max-width: 50em) 100vw' srcset='{{smallImage}} 140w, {{largeImage}} 500w'></div><div class='related-headline'><h2>{{headline}}</h2></div></div></a>";
+var related_link ="<a href='{{url}}'><div class='related'><div class='related-image'><img src='{{largeImage}}' sizes='(max-width: 740px) 20vw, (max-width: 50em) 100vw' srcset='{{smallImage}} 140w, {{largeImage}} 500w'></div><div class='related-headline'><h2>{{headline}}</h2></div></div></a>";
 
 function init() {
 

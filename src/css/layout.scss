@@ -28,17 +28,15 @@
 	
 }
 
-.rio-logo {
+svg.rio-logo {
 
 	width: 100px;
+	height: 56px;
 	margin-bottom: 20px;
 
-	@media (min-width: map-get($mq-breakpoints, tablet)) {
-		width: 100px;
-	}
-
 	@media (min-width: map-get($mq-breakpoints, wide)) {
-		width: 140px;
+		width: 160px;
+		height: 90px;
 	}
 
 }
