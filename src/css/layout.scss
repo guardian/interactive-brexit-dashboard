@@ -19,6 +19,13 @@
     	}
 
     }
+
+    &.immersive {
+		padding-left: 0;
+		padding-right: 0;
+	}
+
+	
 }
 
 .rio-logo {
@@ -68,21 +75,22 @@
 
 .iframe {
 
-	&.immersive {
-		margin-left: -20px;
-		margin-right: 20px;
-		width: calc(100% + 40px);
-	}
+	
 	
 	width: 100%;
 
+	.inline & {
+		max-width: 640px;
+		@include gridOffsetLeft(0px);
+	}
+
 	iframe {
-		width: 100%;
+		min-width: 100%; 
+        width: 100px;
 	}
 
 	&.inline {
 		max-width: 640px;
-		@include gridOffsetLeft();
 	}
 
 

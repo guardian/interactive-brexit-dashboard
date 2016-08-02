@@ -1,3 +1,15 @@
+html {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  -webkit-box-sizing: inherit;
+  -moz-box-sizing: inherit;
+  box-sizing: inherit;
+  }
+
 body,
 figure.interactive {
     margin: 0;
@@ -26,9 +38,6 @@ a {
 }
 
 
-div {
-    box-sizing: border-box;
-}
 
 .interactive-es6-headline {
 	@include fs-headline(5);
@@ -54,12 +63,14 @@ div {
 .fonts__sans { @include f-headlineSans; }
 .fonts__text-sans { @include fs-textSans(4); }
 
-@mixin gridOffsetLeft(){
+@mixin gridOffsetLeft($offset){
+    margin-left: $offset;
+
     @media (min-width: map-get($mq-breakpoints, leftCol)) {
-        margin-left: 160px;
+        margin-left: 160px + 2*$offset;
     }
 
     @media (min-width: map-get($mq-breakpoints, wide)) {
-        margin-left: 240px;
+        margin-left: 240px + 2*$offset;
     }
 }

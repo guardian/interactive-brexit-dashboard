@@ -80,7 +80,8 @@ function loadIframe(el, link){
 
     if (link) {
         iframe = document.createElement('iframe');
-        iframe.style.width = '100%';
+       
+        iframe.scrolling = 'no';
         iframe.style.border = 'none';
         iframe.height = '500'; // default height
         iframe.src = link;

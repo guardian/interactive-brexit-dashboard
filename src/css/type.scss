@@ -1,6 +1,10 @@
 h1, h2, p {
 	max-width: 640px;
-	.content &{ @include gridOffsetLeft(); }
+	.content &{ 
+		@include gridOffsetLeft(0px); 
+	}
+	.immersive &{ @include gridOffsetLeft(10px); }
+
 }
 
 h1 {
@@ -30,6 +34,7 @@ h3 {
 
 p {
     @include fs-bodyCopy(2);
+    white-space: pre-line;
 
     &.featureLight {
     	font-size: 24px;
@@ -38,12 +43,15 @@ p {
 	    font-weight: 100;
 	    color: #767676;
     }
+
 }
 
 p.byline {
 	@include fs-bodyCopy(2);
+	font-weight: bold;
 	@media (min-width: map-get($mq-breakpoints, tablet)) {
 		@include fs-bodyCopy(3);
+		font-weight: bold;
 	}
 }
 

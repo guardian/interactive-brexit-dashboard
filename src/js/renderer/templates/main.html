@@ -20,9 +20,9 @@
 		<div class='header-center'>
 			<h1>{{intro.headline}}</h1>
 			<p class='standfirst'>{{intro.standfirst}}</p>
-			{{#intro.byline}}
+			{{#if intro.byline}}
 				<p class='byline'>{{intro.byline}}</p>
-			{{/intro.byline}}
+			{{/if}}
 
 			<div class="social-btns">
 				<button class="interactive-share" data-network="facebook" data-share-text="{{intro.headline}}" data-share-url="{{intro.share_url}}"></button>
@@ -39,11 +39,9 @@
 
 {{#content}}
 	<div class='interactive-row'>
-		<div class='interactive-container content'>
-
+		
 			{{> (lookup . 'block') }}
 
-		</div>
 	</div>
 {{/content}}
 
