@@ -6,7 +6,7 @@ h1, h2, p {
 h1 {
 	
 	@include fs-headline(6);
-	font-weight: 500;
+	
 	@media (min-width: map-get($mq-breakpoints, leftCol)) {
 	    font-size: 48px;
 	    line-height: 48px;
