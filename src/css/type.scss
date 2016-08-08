@@ -44,6 +44,11 @@ p {
 	    color: #767676;
     }
 
+    &.source {
+    	@include fs-textSans(2);
+    	color: #bdbdbd;
+    }
+
 }
 
 p.byline {
