@@ -28,3 +28,4 @@ export function render(content) {
 		console.log("Rendered");
 	});
 }
+

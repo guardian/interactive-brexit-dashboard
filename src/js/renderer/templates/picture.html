@@ -1,11 +1,16 @@
 <div class='interactive-container content {{weight}}'>
-
 	{{#if h2}}<h2>{{h2}}</h2>{{/if}}
-	{{#if copy}}<p>{{copy}}</p>{{/if}}
 	{{#if feature_copy}}<p class='featureLight'>{{feature_copy}}</p>{{/if}}
-	<div data-src='{{src}}' class='picture' >
-		<img src='{{src}}/2000.jpg' />
+	{{#if copy}}<p>{{{copy}}}</p>{{/if}}
+
+	<div class='picture {{weight}}'>
+		<img src='{{src}}/{{get_last_of size}}.jpg' sizes='(max-width: 140px) 140px, (max-width: 20000px) 100vw' srcset='
+	   			                        {{#size}}{{../src}}/{{.}}.jpg {{.}}w,
+	   			                        {{/size}}
+	   			                    '>
+	  	{{#if h2}}<h2>{{h2}}</h2>{{/if}}
 	</div>
-	{{#if source}}<p class='source'>{{source}}</p>{{/if}}
+
+	{{#if source}}<p class='source'>{{{source}}}</p>{{/if}}
 
 </div>

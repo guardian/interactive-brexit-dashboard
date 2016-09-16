@@ -10,6 +10,10 @@ Handlebars.registerPartial({
     picture: templates["picture"]
 });
 
+Handlebars.registerHelper('get_last_of', function(context) {
+  return context[context.length -1];
+});
+
 var template = Handlebars.compile(templates["main"]);
 
 reqwest({

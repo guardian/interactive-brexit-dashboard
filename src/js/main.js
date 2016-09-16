@@ -9,15 +9,10 @@ var related_link ="<a href='{{url}}' target='_parent'><div class='related'><div 
 function init() {
 
   var iframes = document.querySelectorAll('.iframe');
-  var pics = document.querySelectorAll('.picture');
 
   [].forEach.call(iframes, function(i){
   	loadIframe(i, i.getAttribute('data-iframe-src') );
   });
-
-  [].forEach.call(pics, function(i){
-    loadPicture(i, i.getAttribute('data-src') );
-  })
 }
 
 function onLoad(){
@@ -69,17 +64,6 @@ function share(network, shareURL, message) {
         }
 
         window.open(shareWindow, network + 'share', 'width=640,height=320');
-}
-
-
-function loadPicture(el, link){
-   
-    let src = el.getAttribute('data-src');
-
-    el.innerHTML = window.innerWidth > 740 ?
-        `<img src="${src}/2000.jpg" />` :
-        `<img src="${src}/1000.jpg" />`;
-
 }
 
 
