@@ -2,11 +2,11 @@
 <div class='interactive-container content {{weight}}'>
 
 	{{#if h2}}<h2>{{h2}}</h2>{{/if}}
-	{{#if copy}}<p>{{copy}}</p>{{/if}}
 	{{#if feature_copy}}<p class='featureLight'>{{feature_copy}}</p>{{/if}}
+	{{#if copy}}<p>{{{copy}}}</p>{{/if}}
 
 	<div class='iframe' data-iframe-src='{{src}}'></div>
 
-	{{#if source}}<p class='source'>{{source}}</p>{{/if}}
+	{{#if source}}<p class='source'>{{{source}}}</p>{{/if}}
 	
 </div>

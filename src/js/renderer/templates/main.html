@@ -12,14 +12,15 @@
 
 	<div class='interactive-container'>
 
-		<div class='header-left'>
-			<a href="https://www.theguardian.com/sport/rio-2016" target='_blank'>
-				{{>logo}}
-			</a>
-		</div>
+		<!-- <div class='header-left'>
+			
+		</div> -->
 		<div class='header-center'>
 			<h1>{{intro.headline}}</h1>
 			<p class='standfirst'>{{intro.standfirst}}</p>
+			{{#if intro.link}}
+				<p class='bullet'>{{{intro.link}}}</p>
+			{{/if}}
 			{{#if intro.byline}}
 				<p class='byline'>{{intro.byline}}</p>
 			{{/if}}

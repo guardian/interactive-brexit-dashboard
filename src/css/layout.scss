@@ -28,19 +28,6 @@
 	
 }
 
-svg.rio-logo {
-
-	width: 100px;
-	height: 56px;
-	margin-bottom: 20px;
-
-	@media (min-width: map-get($mq-breakpoints, wide)) {
-		width: 160px;
-		height: 90px;
-	}
-
-}
-
 .header-left {
 
 	
@@ -65,8 +52,12 @@ svg.rio-logo {
 
 	@media (min-width: map-get($mq-breakpoints, leftCol)) {
 		width: 620px;
-		float: left;
-		margin-left: 20px;
+		margin-left: 160px;
+	}
+
+	@media (min-width: map-get($mq-breakpoints, wide)) {
+		width: 620px;
+		margin-left: 240px;
 	}
 
 }
@@ -93,4 +84,17 @@ svg.rio-logo {
 
 
 
+}
+
+.picture {
+	overflow: hidden;
+}
+
+.picture img{
+	max-height: 480px;
+
+	@include mq(mobileLandscape) {
+        max-width: 1300px;
+        max-height: none;
+    }
 }

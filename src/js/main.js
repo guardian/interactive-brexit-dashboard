@@ -9,9 +9,14 @@ var related_link ="<a href='{{url}}' target='_parent'><div class='related'><div 
 function init() {
 
   var iframes = document.querySelectorAll('.iframe');
+  var pics = document.querySelectorAll('.picture');
 
   [].forEach.call(iframes, function(i){
   	loadIframe(i, i.getAttribute('data-iframe-src') );
+  });
+
+  [].forEach.call(pics, function(i){
+    loadPicture(i, i.getAttribute('data-src') );
   })
 }
 
@@ -24,16 +29,15 @@ function onLoad(){
 	    shareEl.addEventListener('click',function(){ share(network,url,text)});
 	});
 
-    setTimeout(function(){
-        reqwest({
-            url: 'https://interactive.guim.co.uk/docsdata/126uRle-0jKSnlKmCS6ighUA5Emx80LNh1CRZkAdv1WU.json',
-            type: 'json',
-            crossOrigin: true,
-            success: renderRelated
-        });
+    // setTimeout(function(){
+    //     reqwest({
+    //         url: 'https://interactive.guim.co.uk/docsdata/126uRle-0jKSnlKmCS6ighUA5Emx80LNh1CRZkAdv1WU.json',
+    //         type: 'json',
+    //         crossOrigin: true,
+    //         success: renderRelated
+    //     });
 
-    }, 3000);
-
+    // }, 3000);
     
 }
 
@@ -65,6 +69,17 @@ function share(network, shareURL, message) {
         }
 
         window.open(shareWindow, network + 'share', 'width=640,height=320');
+}
+
+
+function loadPicture(el, link){
+   
+    let src = el.getAttribute('data-src');
+
+    el.innerHTML = window.innerWidth > 740 ?
+        `<img src="${src}/2000.jpg" />` :
+        `<img src="${src}/1000.jpg" />`;
+
 }
 
 
