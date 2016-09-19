@@ -9,9 +9,14 @@ var related_link ="<a href='{{url}}' target='_parent'><div class='related'><div 
 function init() {
 
   var iframes = document.querySelectorAll('.iframe');
+  var iframes_dyptic = document.querySelectorAll('.iframe-dyptic-each');
 
   [].forEach.call(iframes, function(i){
   	loadIframe(i, i.getAttribute('data-iframe-src') );
+  });
+
+  [].forEach.call(iframes_dyptic, function(i){
+    loadIframe(i, i.getAttribute('data-iframe-src') );
   });
 }
 

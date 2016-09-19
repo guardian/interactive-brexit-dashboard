@@ -25,13 +25,10 @@
 		padding-right: 0;
 	}
 
-	
 }
 
 .header-left {
 
-	
-	
 	@media (min-width: map-get($mq-breakpoints, leftCol)) {
 		width: 140px;
 		float: left;
@@ -62,10 +59,9 @@
 
 }
 
-.iframe {
+.iframe, .iframe-dyptic {
 
-	
-	
+	clear: after;
 	width: 100%;
 
 	.inline & {
@@ -82,7 +78,21 @@
 		max-width: 640px;
 	}
 
+	.half &, &.half {
+		@include gridOffsetLeft(0px);
+		width: 300px;
+		margin-right: 20px;	
+		float: left;
+	}
 
+}
+
+.iframe-dyptic-each {
+	width: 50%;
+	float:left;
+	margin-left: 0px;
+	padding-right:20px;
+	margin-bottom: 20px;
 
 }
 

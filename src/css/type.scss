@@ -19,6 +19,16 @@ h1 {
 
 h2 {
 	margin: 0;
+	margin-bottom: 20px;
+	max-width: 420px;
+	@include fs-headline(4);
+	font-weight: bold;
+	color: #005689;
+	
+	@media (min-width: map-get($mq-breakpoints, leftCol)) {
+	    @include fs-headline(5);
+
+	}
 }
 
 
@@ -33,6 +43,13 @@ h3 {
 p {
     @include fs-bodyCopy(2);
     white-space: pre-line;
+    color: #505050;
+
+ 	.half & {
+ 		max-width: 300px;
+ 		float: left;
+ 		margin-left: 0;
+ 	}
 
     &.featureLight {
     	font-size: 24px;

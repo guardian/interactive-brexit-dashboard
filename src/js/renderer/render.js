@@ -7,7 +7,8 @@ Handlebars.registerPartial({
     copy: templates["copy"],
     footer: templates["footer"],
     logo: templates["logo"],
-    picture: templates["picture"]
+    picture: templates["picture"],
+    dyptic: templates["iframe-dyptic"]
 });
 
 Handlebars.registerHelper('get_last_of', function(context) {
