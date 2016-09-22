@@ -1,7 +1,9 @@
 .interactive-container {
     padding: 10px;
     margin: 0 auto;
-    overflow: auto;
+    overflow-x: hidden;
+    width:100%;
+
     @include mq(mobileLandscape) {
         padding: 20px;
     }
@@ -13,9 +15,9 @@
     }
 
     .header & {
-    	padding-bottom: 20px;
+    	padding-bottom: 10px;
     	@media (min-width: map-get($mq-breakpoints, leftCol)) {
-    		min-height: 360px;
+    		min-height: 340px;
     	}
 
     }
@@ -23,6 +25,11 @@
     &.immersive {
 		padding-left: 0;
 		padding-right: 0;
+	}
+
+	.key & {
+		padding-top:0px;
+		padding-bottom: 10px;
 	}
 
 }
@@ -85,6 +92,12 @@
 		float: left;
 	}
 
+	.another-thing & {
+		.js-graph header span{
+			color:#fff;
+		}
+	}
+
 }
 
 .iframe-dyptic-each {
@@ -116,10 +129,6 @@
 			text-shadow: 1px 1px 7px rgba(0,0,0,1);
         }
 
-	}
-
-	img {
-		width: 100%;
 	}
 
 	&.inline {

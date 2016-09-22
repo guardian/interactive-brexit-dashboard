@@ -1,4 +1,4 @@
-h1, h2, p {
+h1, h2, p, h4 {
 	max-width: 640px;
 	.content &{ 
 		@include gridOffsetLeft(0px); 
@@ -22,12 +22,41 @@ h2 {
 	margin-bottom: 20px;
 	max-width: 420px;
 	@include fs-headline(4);
-	font-weight: bold;
 	color: #005689;
 	
 	@media (min-width: map-get($mq-breakpoints, leftCol)) {
 	    @include fs-headline(5);
 
+	}
+
+	.another-thing & {
+		color: #fcee21;
+	}
+
+	&.source {
+		@include fs-textSans(3);
+		font-weight: bold;
+		color: #000;
+		font-size: 16px;
+		margin-bottom: 0px;
+	}
+}
+
+h4 {
+	margin: 0;
+	max-width: 420px;
+	@include fs-textSans(4);
+	color: #000;
+	font-weight: bold;
+	
+	@media (min-width: map-get($mq-breakpoints, leftCol)) {
+	    @include fs-textSans(4);
+
+	}
+
+	a {
+		color:#000;
+		border-bottom: 1px dotted #767676;
 	}
 }
 
@@ -51,6 +80,14 @@ p {
  		margin-left: 0;
  	}
 
+ 	.another-thing & {
+		color: #efefef;
+
+		a {
+			color: #fcee21;
+		}
+	}
+
     &.featureLight {
     	font-size: 24px;
     	line-height: 28px;
@@ -62,6 +99,10 @@ p {
     &.source {
     	@include fs-textSans(2);
     	color: #767676;
+    	a {
+    		color: #767676;
+    		text-decoration: none;
+    	}
     }
 
     &.bullet::before {
@@ -72,12 +113,14 @@ p {
 	    height: 0.75rem;
 	    width: 0.75rem;
 	    margin-right: 7px;
-	    background-color: #005689;
+	    background-color: #767676;
     }
 
     &.bullet {
     	text-decoration: none;
-    	font-weight: bold; 
+    	font-weight: 600; 
+    	margin-bottom: 0px;
+    	margin-top: 0px;
 
     	a {
     	}
@@ -107,4 +150,27 @@ p.standfirst {
 		line-height: 26px;
 	}
 		
+}
+
+.key-text {
+	@include fs-textSans(3);
+	color: #767676;
+	font-size: 16px;
+	font-weight: bold;
+	float: left;
+	margin-top: 25px;
+	padding-right: 50px;
+}
+
+.key-icons{
+	display: inline-block;
+	float: left;
+	
+	white-space: nowrap;
+
+	.icon {
+		float: left;
+		vertical-align: top;
+		padding-left: 10px;
+	}
 }

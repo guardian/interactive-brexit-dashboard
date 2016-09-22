@@ -241,6 +241,6 @@ module.exports = function(grunt) {
 
     grunt.registerTask('deploy', ['loadDeployConfig', 'prompt:visuals', 'build', 'template:bootjs', 'copy:deploy', 'aws_s3', 'boot_url']);
 
-    grunt.loadNpmTasks('grunt-aws');
+    grunt.loadNpmTasks('grunt-aws');x
     grunt.loadNpmTasks('grunt-contrib-cssmin');
 }

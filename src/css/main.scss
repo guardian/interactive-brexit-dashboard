@@ -75,5 +75,24 @@
 	    background-repeat: no-repeat;
 	    background-position: right;
     }
+
+    &.key {
+        background: #dcdcdc;
+        color: #333;
+
+        background-size: contain;
+	    background-repeat: no-repeat;
+	    background-position: right;
+	    margin-top:0;
+    }
+
+    &.another-thing {
+    	background: #197caa;
+        color: #333;
+
+        background-size: contain;
+	    background-repeat: no-repeat;
+	    background-position: right;
+    }
     
 }

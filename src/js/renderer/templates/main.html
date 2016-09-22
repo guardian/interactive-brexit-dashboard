@@ -20,7 +20,7 @@
 			<p class='standfirst'>{{intro.standfirst}}</p>
 
 			{{#each intro.links}}
-				<p class='bullet'>{{this}}</p>
+				<p class='bullet'>{{{this}}}</p>
 			{{/each}}
 
 			{{#if intro.byline}}
@@ -37,10 +37,8 @@
 </div>
 
 
-
-
 {{#content}}
-	<div class='interactive-row'>
+	<div class='interactive-row {{type}}'>
 		
 			{{> (lookup . 'block') }}
 
