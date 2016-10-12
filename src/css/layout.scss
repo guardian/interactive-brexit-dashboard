@@ -109,6 +109,28 @@
 
 }
 
+.forecast.up::after {
+	background: url("https://interactive.guim.co.uk/2016/oct/brexiticons/up.svg") no-repeat center;
+}
+
+.forecast.down::after {
+	background: url("https://interactive.guim.co.uk/2016/oct/brexiticons/down.svg") no-repeat center;
+}
+
+.forecast.flat::after {
+	background: url("https://interactive.guim.co.uk/2016/oct/brexiticons/flat.svg") no-repeat center;
+}
+
+.forecast::after {
+    content: "";
+    display: inline-block;
+	background-size: contain;
+    margin-left: 5px;
+    width: 25px;
+    height: 10px;
+} 
+
+
 .picture {
 
 	&.immersive {
