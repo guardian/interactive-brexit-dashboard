@@ -1,12 +1,12 @@
 var fs = require('fs');
 
-module.exports = function(grunt) {
+module.exports = function (grunt) {
 
     require('jit-grunt')(grunt);
 
     grunt.initConfig({
 
-        visuals: { },
+        visuals: {},
 
         watch: {
             js: {
@@ -24,6 +24,10 @@ module.exports = function(grunt) {
             harness: {
                 files: ['harness/**/*'],
                 tasks: ['harness']
+            },
+            data: {
+                files: ['https://www.theguardian.com'],
+                tasks: []
             }
         },
 
@@ -43,15 +47,15 @@ module.exports = function(grunt) {
         },
 
         cssmin: {
-          options: {
-            shorthandCompacting: false,
-            roundingPrecision: -1
-          },
-          target: {
-            files: {
-              'build/main.css': ['build/main.css']
+            options: {
+                shorthandCompacting: false,
+                roundingPrecision: -1
+            },
+            target: {
+                files: {
+                    'build/main.css': ['build/main.css']
+                }
             }
-          }
         },
 
         shell: {
@@ -90,12 +94,12 @@ module.exports = function(grunt) {
         copy: {
             harness: {
                 files: [
-                    {expand: true, cwd: 'harness/', src: ['curl.js', 'index.html', 'immersive.html', 'interactive.html'], dest: 'build'},
+                    { expand: true, cwd: 'harness/', src: ['curl.js', 'index.html', 'immersive.html', 'interactive.html'], dest: 'build' },
                 ]
             },
             assets: {
                 files: [
-                    {expand: true, cwd: 'src/', src: ['assets/**/*'], dest: 'build'},
+                    { expand: true, cwd: 'src/', src: ['assets/**/*'], dest: 'build' },
                 ]
             },
             deploy: {
@@ -129,7 +133,7 @@ module.exports = function(grunt) {
                             choices: [{
                                 name: 'TEST: <%= visuals.s3.domain %>testing/<%= visuals.s3.path %>',
                                 value: 'TEST'
-                            },{
+                            }, {
                                 name: 'PROD: <%= visuals.s3.domain %><%= visuals.s3.path %>',
                                 value: 'PROD'
                             }]
@@ -139,12 +143,12 @@ module.exports = function(grunt) {
                             type: 'confirm',
                             message: 'Deploying to PRODUCTION. Are you sure?',
                             default: false,
-                            when: function(answers) {
+                            when: function (answers) {
                                 return answers['visuals.s3.stage'] === 'PROD';
                             }
                         }
                     ],
-                    then: function(answers) {
+                    then: function (answers) {
                         if (grunt.config('visuals.s3.stage') !== 'PROD') { // first Q
                             var prodPath = grunt.config('visuals.s3.path');
                             var testPath = 'testing/' + prodPath;
@@ -214,7 +218,11 @@ module.exports = function(grunt) {
         }
     });
 
-    grunt.registerTask('loadDeployConfig', function() {
+    grunt.event.on('watch', function (action, filepath, target) {
+        grunt.log.writeln('data changed' + action + filepath + target);
+    });
+
+    grunt.registerTask('loadDeployConfig', function () {
         grunt.config('visuals', {
             s3: grunt.file.readJSON('./cfg/s3.json'),
             timestamp: Date.now(),
@@ -224,7 +232,7 @@ module.exports = function(grunt) {
         });
     })
 
-    grunt.registerTask('boot_url', function() {
+    grunt.registerTask('boot_url', function () {
         grunt.log.write('\nURL: '['yellow'].bold)
         grunt.log.writeln(grunt.template.process('<%= visuals.s3.domain %><%= visuals.s3.path %>/embed/index.html'))
 

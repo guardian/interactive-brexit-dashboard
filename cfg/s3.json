@@ -1,5 +1,6 @@
 {
 	"bucket": "gdn-cdn",
 	"path": "2016/oct/interactive-brexit-dashboard",
-	"domain": "https://interactive.guim.co.uk/"
+	"domain": "https://interactive.guim.co.uk/",
+	"Test": "test2"
 }
