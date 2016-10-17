@@ -34,6 +34,28 @@
 
 }
 
+.gv-brexit-month {
+	@include fs-textSans(2);
+	margin-right: 10px;
+		color: darkgray;
+
+}
+
+.gv-brexit-month a {
+	color: black;
+}
+
+.gv-brexit-navigation {
+	padding-bottom: 20px;
+}
+
+.mth-current-true {
+	color: white;
+	background-color: navy;
+	border-radius: 6px;
+	padding: 2px 0px 2px 2px;
+}
+
 .header-left {
 
 	@media (min-width: map-get($mq-breakpoints, leftCol)) {
