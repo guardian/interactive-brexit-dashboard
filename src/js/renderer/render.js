@@ -1,6 +1,7 @@
 import reqwest from 'reqwest'
 import Handlebars from 'handlebars'
 import { render, templates, graphs } from './renderHelpers'
+import request from 'request'
 
 Handlebars.registerPartial({
     navigation: templates["navigation"],
@@ -28,50 +29,125 @@ Handlebars.registerHelper('get_last_of', function (context) {
 
 var template = Handlebars.compile(templates["main"]);
 
-
 function getinnards(archieml) {
     var blocks = archieml.content;
-    blocks.map(function(block) {
-    block.indexvalue = blocks.indexOf(block);
-    getiframe(block);
-    });
+      var newarchieml = archieml;
+    newarchieml.content = [];
+    for (var i= 0; i < blocks.length; i++) {
+        var block = blocks[i];
+        block.innards = getiframe(block);
+        block.guts = block.innards.body;
+        console.log(block);
+    }
+    console.log(newarchieml);
 }
 
 function getiframe(block) {
-    //console.log(block);
-            block.test = 'test';
-
+    var output = '';
     reqwest({
         url: block.src,
         type: 'html',
         success: (resp) => {
-//            console.log();
-            block.innards = resp;
-            graphs(block);
-  //  console.log(block.innards);
+            output = resp;
+            return output;
         },
         error: (err) => {
-            console.log(err);
-        return;} 
-            
+       //     console.log(err);
+        }
     });
-
+  
 }
-/*
-function completerender(archieml) {
-  //  console.log('finaloutput');
-   // console.log(archieml);
-    var html = template(archieml);
-    render(html);
-};
-*/
+
+
+
 
 reqwest({
     url: 'https://interactive.guim.co.uk/docsdata-test/1JikkOipmxlQv_cHWlxB31aPvSVVlil8PypDgltMhKqk.json',
     type: 'json',
     success: (resp) => {
         getinnards(resp);
-      var html = template(resp);
-     render(html);
+        //   var html = template(resp);
+        //  render(html);
     }
 });
+
+/*
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function getinnards(archieml) {
+    var blocks = archieml.content;
+
+    var p1 = new Promise(
+        function (resolve, reject) {
+            resolve(blocks.map(function (block) {
+                block.indexvalue = blocks.indexOf(block);
+                getiframe(block);
+                return block;
+            }));
+        }
+    );
+
+    p1.then(function(hmm) {
+        console.log(blocks);
+
+    var newarchieml = archieml;
+    newarchieml.content = blocks;
+   var html = template(newarchieml);
+//    render(html);
+
+    })
+    .catch(
+        function (reason) {console.log('error!')}
+    );
+
+
+}
+
+function morestuff(block,resp) {
+            block.stuff = 'stuff';
+            block.innards = resp;
+            return block;
+}
+
+function getiframe(block) {
+    //console.log(block);
+    block.test = 'test';
+
+    reqwest({
+        url: block.src,
+        type: 'html',
+        success: (resp) => {
+//            block.innards = resp;
+  //          graphs(block);
+        block.morestuff(block, resp);
+        },
+        error: (err) => {
+            console.log(err);
+        }
+
+    });
+ 
+ return block;
+}
+
+*/
