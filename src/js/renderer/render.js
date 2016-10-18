@@ -49,7 +49,7 @@ function getinnards(archieml) {
                 }
             },
             error: (err) => {
-            console.log(err);
+            console.log('plum' + err);
             }
         });
        };
