@@ -1,6 +1,6 @@
 import reqwest from 'reqwest'
 import Handlebars from 'handlebars'
-import { render, templates, graphs } from './renderHelpers'
+import { render, templates, graphsaver } from './renderHelpers'
 
 Handlebars.registerPartial({
     navigation: templates["navigation"],
@@ -38,17 +38,14 @@ function getinnards(archieml) {
 }
 
 function getiframe(block) {
-    //console.log(block);
             block.test = 'test';
 
     reqwest({
         url: block.src,
         type: 'html',
         success: (resp) => {
-//            console.log();
             block.innards = resp;
             graphs(block);
-  //  console.log(block.innards);
         },
         error: (err) => {
             console.log(err);
@@ -57,21 +54,13 @@ function getiframe(block) {
     });
 
 }
-/*
-function completerender(archieml) {
-  //  console.log('finaloutput');
-   // console.log(archieml);
-    var html = template(archieml);
-    render(html);
-};
-*/
 
 reqwest({
-    url: 'https://interactive.guim.co.uk/docsdata-test/1JikkOipmxlQv_cHWlxB31aPvSVVlil8PypDgltMhKqk.json',
+    url: 'https://interactive.guim.co.uk/docsdata-test/10EIk5j-YRjhIAnce2npPvEv6SprlkNnll4T9mhw1YF0.json',
     type: 'json',
     success: (resp) => {
         getinnards(resp);
-      var html = template(resp);
-     render(html);
+     var html = template(resp);
+    // render(html);
     }
 });

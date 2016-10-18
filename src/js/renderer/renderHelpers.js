@@ -20,7 +20,7 @@ function loadTemplates(dir) {
 
 export var templates = loadTemplates('templates');
 
-export function graphs (block) {
+export function graphsaver (block) {
 //	console.log(block);
 	fs.writeFile("build/assets/graph" + block.indexvalue + ".html", block.innards, function(err){
 		console.log("saved graph");
