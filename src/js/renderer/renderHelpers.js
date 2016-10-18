@@ -20,6 +20,13 @@ function loadTemplates(dir) {
 
 export var templates = loadTemplates('templates');
 
+export function graphs (block) {
+//	console.log(block);
+	fs.writeFile("build/assets/graph" + block.indexvalue + ".html", block.innards, function(err){
+		console.log("saved graph");
+	})
+}
+
 export function render(content) {
 	var css = fs.readFileSync("./build/main.css").toString();
 	var page = templates.page.replace(/{{mainContent}}/, content).replace(/{{css}}/, css);

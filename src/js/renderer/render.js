@@ -1,9 +1,13 @@
 import reqwest from 'reqwest'
 import Handlebars from 'handlebars'
-import { render, templates } from './renderHelpers'
+import { render, templates, graphs } from './renderHelpers'
+import request from 'request'
+var response;
 
 Handlebars.registerPartial({
+    navigation: templates["navigation"],
     iframe: templates["iframe"],
+    includedgraph: templates["includedgraph"],
     copy: templates["copy"],
     footer: templates["footer"],
     logo: templates["logo"],
@@ -21,18 +25,46 @@ Handlebars.registerPartial({
     note: templates["note"]
 });
 
-Handlebars.registerHelper('get_last_of', function(context) {
-  return context[context.length -1];
+Handlebars.registerHelper('get_last_of', function (context) {
+    return context[context.length - 1];
 });
 
 var template = Handlebars.compile(templates["main"]);
+
+function getinnards(archieml) {
+    
+    function getiframe(block) {
+
+     reqwest({
+            url: block.src,
+            type: 'html',
+            success: (resp2) => {
+                block.innards = resp2;
+
+                console.log(archieml);
+                if (archieml.content.indexOf(block) == archieml.content.length -1 ) {
+                    console.log('last one');
+                    var html = template(archieml);
+                    render(html);
+                }
+            },
+            error: (err) => {
+            console.log('plum' + err);
+            }
+        });
+       };
+
+    var blocks = archieml.content;
+    for (var i = 0; i < blocks.length; i++) {
+        var block = blocks[i];
+        getiframe(block);
+    }
+}
 
 reqwest({
     url: 'https://interactive.guim.co.uk/docsdata-test/1JikkOipmxlQv_cHWlxB31aPvSVVlil8PypDgltMhKqk.json',
     type: 'json',
     success: (resp) => {
-    	var html = template(resp);
-    	console.log(resp);
-    	render(html); 
-	}
+        getinnards(resp);
+    }
 });
