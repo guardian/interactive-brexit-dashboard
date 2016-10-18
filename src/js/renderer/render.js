@@ -2,10 +2,12 @@ import reqwest from 'reqwest'
 import Handlebars from 'handlebars'
 import { render, templates, graphs } from './renderHelpers'
 import request from 'request'
+var response;
 
 Handlebars.registerPartial({
     navigation: templates["navigation"],
     iframe: templates["iframe"],
+    includedgraph: templates["includedgraph"],
     copy: templates["copy"],
     footer: templates["footer"],
     logo: templates["logo"],
@@ -30,124 +32,39 @@ Handlebars.registerHelper('get_last_of', function (context) {
 var template = Handlebars.compile(templates["main"]);
 
 function getinnards(archieml) {
+    
+    function getiframe(block) {
+
+     reqwest({
+            url: block.src,
+            type: 'html',
+            success: (resp2) => {
+                block.innards = resp2;
+
+                console.log(archieml);
+                if (archieml.content.indexOf(block) == archieml.content.length -1 ) {
+                    console.log('last one');
+                    var html = template(archieml);
+                    render(html);
+                }
+            },
+            error: (err) => {
+            console.log(err);
+            }
+        });
+       };
+
     var blocks = archieml.content;
-      var newarchieml = archieml;
-    newarchieml.content = [];
-    for (var i= 0; i < blocks.length; i++) {
+    for (var i = 0; i < blocks.length; i++) {
         var block = blocks[i];
-        block.innards = getiframe(block);
-        block.guts = block.innards.body;
-        console.log(block);
+        getiframe(block);
     }
-    console.log(newarchieml);
 }
-
-function getiframe(block) {
-    var output = '';
-    reqwest({
-        url: block.src,
-        type: 'html',
-        success: (resp) => {
-            output = resp;
-            return output;
-        },
-        error: (err) => {
-       //     console.log(err);
-        }
-    });
-  
-}
-
-
-
 
 reqwest({
     url: 'https://interactive.guim.co.uk/docsdata-test/1JikkOipmxlQv_cHWlxB31aPvSVVlil8PypDgltMhKqk.json',
     type: 'json',
     success: (resp) => {
         getinnards(resp);
-        //   var html = template(resp);
-        //  render(html);
     }
 });
-
-/*
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function getinnards(archieml) {
-    var blocks = archieml.content;
-
-    var p1 = new Promise(
-        function (resolve, reject) {
-            resolve(blocks.map(function (block) {
-                block.indexvalue = blocks.indexOf(block);
-                getiframe(block);
-                return block;
-            }));
-        }
-    );
-
-    p1.then(function(hmm) {
-        console.log(blocks);
-
-    var newarchieml = archieml;
-    newarchieml.content = blocks;
-   var html = template(newarchieml);
-//    render(html);
-
-    })
-    .catch(
-        function (reason) {console.log('error!')}
-    );
-
-
-}
-
-function morestuff(block,resp) {
-            block.stuff = 'stuff';
-            block.innards = resp;
-            return block;
-}
-
-function getiframe(block) {
-    //console.log(block);
-    block.test = 'test';
-
-    reqwest({
-        url: block.src,
-        type: 'html',
-        success: (resp) => {
-//            block.innards = resp;
-  //          graphs(block);
-        block.morestuff(block, resp);
-        },
-        error: (err) => {
-            console.log(err);
-        }
-
-    });
- 
- return block;
-}
-
-*/
