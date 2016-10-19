@@ -8,6 +8,7 @@ Handlebars.registerPartial({
     navigation: templates["navigation"],
     iframe: templates["iframe"],
     includedgraph: templates["includedgraph"],
+    includedhalf: templates["included-half"],
     copy: templates["copy"],
     footer: templates["footer"],
     logo: templates["logo"],
@@ -44,8 +45,10 @@ function getinnards(archieml) {
                 console.log(archieml);
                 if (archieml.content.indexOf(block) == archieml.content.length -1 ) {
                     console.log('last one');
+                    setTimeout(function(){
                     var html = template(archieml);
                     render(html);
+                    },3000);
                 }
             },
             error: (err) => {
