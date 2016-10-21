@@ -8,6 +8,7 @@ Handlebars.registerPartial({
     navigation: templates["navigation"],
     iframe: templates["iframe"],
     includedgraph: templates["includedgraph"],
+    includeddyptic: templates["included-dyptic"],
     copy: templates["copy"],
     footer: templates["footer"],
     logo: templates["logo"],
@@ -32,32 +33,69 @@ Handlebars.registerHelper('get_last_of', function (context) {
 var template = Handlebars.compile(templates["main"]);
 
 function getinnards(archieml) {
-    
+
     function getiframe(block) {
 
-     reqwest({
-            url: block.src,
-            type: 'html',
-            success: (resp2) => {
-                block.innards = resp2;
+        console.log(typeof block.src);
 
-                console.log(archieml);
-                if (archieml.content.indexOf(block) == archieml.content.length -1 ) {
-                    console.log('last one');
-                    var html = template(archieml);
-                    render(html);
+        if (typeof block.src === 'string') {
+
+
+            reqwest({
+                url: block.src,
+                type: 'html',
+                success: (resp2) => {
+                    block.innards = resp2.replace(/iframeMessenger.resize\(\)/g, "//");
+
+                    //        console.log(archieml);
+                },
+                error: (err) => {
+                    console.log('plum' + err);
                 }
-            },
-            error: (err) => {
-            console.log('plum' + err);
-            }
-        });
-       };
+            });
+        }
+
+        else if (typeof block.src === 'object') {
+            block.innards = [];
+            var subblocks = block.src;
+                        console.log(subblock);
+
+            for (var j = 0; j < subblocks.length; j++) {
+                var subblock = subblocks[j];
+                console.log(j);
+                var tempindex = j;
+                reqwest({
+                    url: subblock,
+                    type: 'html',
+                    success: (resp3) => {
+                        console.log(subblock);
+                        block.innards[tempindex] = resp3.replace(/iframeMessenger.resize\(\)/g, "");
+                    },
+                    error: (err) => {
+                        console.log('plum' + err);
+
+                    }
+                });
+           }
+        }
+    };
+
+
 
     var blocks = archieml.content;
     for (var i = 0; i < blocks.length; i++) {
         var block = blocks[i];
         getiframe(block);
+        if (archieml.content.indexOf(block) == archieml.content.length - 1) {
+            console.log('last one');
+            console.dir(archieml.content[0].innards.length);
+            setTimeout(function () {
+                var html = template(archieml);
+                render(html);
+            }, 3000);
+
+
+        }
     }
 }
 
