@@ -45,7 +45,7 @@ function getinnards(archieml) {
                 url: block.src,
                 type: 'html',
                 success: (resp2) => {
-                    block.innards = resp2.replace(/iframeMessenger.resize\(\)/g, "//");
+                    block.innards = resp2.replace(/iframeMessenger.resize\(\)/g, "");
 
                     //        console.log(archieml);
                 },
@@ -88,8 +88,7 @@ function getinnards(archieml) {
         getiframe(block);
         if (archieml.content.indexOf(block) == archieml.content.length - 1) {
             console.log('last one');
-            console.dir(archieml.content[0].innards.length);
-            setTimeout(function () {
+                      setTimeout(function () {
                 var html = template(archieml);
                 render(html);
             }, 3000);
