@@ -1,9 +1,14 @@
 import reqwest from 'reqwest'
 import Handlebars from 'handlebars'
-import { render, templates } from './renderHelpers'
+import { render, templates, graphs } from './renderHelpers'
+import request from 'request'
+var response;
 
 Handlebars.registerPartial({
+    navigation: templates["navigation"],
     iframe: templates["iframe"],
+    includedgraph: templates["includedgraph"],
+    includeddyptic: templates["included-dyptic"],
     copy: templates["copy"],
     footer: templates["footer"],
     logo: templates["logo"],
@@ -21,18 +26,82 @@ Handlebars.registerPartial({
     note: templates["note"]
 });
 
-Handlebars.registerHelper('get_last_of', function(context) {
-  return context[context.length -1];
+Handlebars.registerHelper('get_last_of', function (context) {
+    return context[context.length - 1];
 });
 
 var template = Handlebars.compile(templates["main"]);
+
+function getinnards(archieml) {
+
+    function getiframe(block) {
+
+        console.log(typeof block.src);
+
+        if (typeof block.src === 'string') {
+
+
+            reqwest({
+                url: block.src,
+                type: 'html',
+                success: (resp2) => {
+                    block.innards = resp2.replace(/iframeMessenger.resize\(\)/g, "");
+
+                    //        console.log(archieml);
+                },
+                error: (err) => {
+                    console.log('plum' + err);
+                }
+            });
+        }
+
+        else if (typeof block.src === 'object') {
+            block.innards = [];
+            var subblocks = block.src;
+                        console.log(subblock);
+
+            for (var j = 0; j < subblocks.length; j++) {
+                var subblock = subblocks[j];
+                console.log(j);
+                var tempindex = j;
+                reqwest({
+                    url: subblock,
+                    type: 'html',
+                    success: (resp3) => {
+                        console.log(subblock);
+                        block.innards[tempindex] = resp3.replace(/iframeMessenger.resize\(\)/g, "");
+                    },
+                    error: (err) => {
+                        console.log('plum' + err);
+
+                    }
+                });
+           }
+        }
+    };
+
+
+
+    var blocks = archieml.content;
+    for (var i = 0; i < blocks.length; i++) {
+        var block = blocks[i];
+        getiframe(block);
+        if (archieml.content.indexOf(block) == archieml.content.length - 1) {
+            console.log('last one');
+                      setTimeout(function () {
+                var html = template(archieml);
+                render(html);
+            }, 3000);
+
+
+        }
+    }
+}
 
 reqwest({
     url: 'https://interactive.guim.co.uk/docsdata-test/1pySroEJg3gnAG15opp6OXYWU-EHKSYU4n3jmyDohzMY.json',
     type: 'json',
     success: (resp) => {
-    	var html = template(resp);
-    	console.log(resp);
-    	render(html); 
-	}
+        getinnards(resp);
+    }
 });
