@@ -147,5 +147,5 @@ function loadIframe(el, link){
     }
 }
 
-init();
+//init();
 window.onload = onLoad;
