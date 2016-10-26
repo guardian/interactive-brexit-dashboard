@@ -34,12 +34,11 @@ var template = Handlebars.compile(templates["main"]);
 
 function getinnards(archieml) {
 
+    console.log(archieml);
+
     function getiframe(block) {
 
-        console.log(typeof block.src);
-
         if (typeof block.src === 'string') {
-
 
             reqwest({
                 url: block.src,
@@ -55,31 +54,43 @@ function getinnards(archieml) {
             });
         }
 
-        else if (typeof block.src === 'object') {
-            block.innards = [];
-            var subblocks = block.src;
-                        console.log(subblock);
+        if (typeof block.leftsrc === 'string') {
 
-            for (var j = 0; j < subblocks.length; j++) {
-                var subblock = subblocks[j];
-                console.log(j);
-                var tempindex = j;
-                reqwest({
-                    url: subblock,
-                    type: 'html',
-                    success: (resp3) => {
-                        console.log(subblock);
-                        block.innards[tempindex] = resp3.replace(/iframeMessenger.resize\(\)/g, "");
-                    },
-                    error: (err) => {
-                        console.log('plum' + err);
 
-                    }
-                });
-           }
+            reqwest({
+                url: block.leftsrc,
+                type: 'html',
+                success: (resp2) => {
+                    block.leftinnards = resp2.replace(/iframeMessenger.resize\(\)/g, "");
+
+                    //        console.log(archieml);
+                },
+                error: (err) => {
+                    console.log('plum' + err);
+                }
+            });
+
         }
-    };
 
+        if (typeof block.rightsrc === 'string') {
+
+            reqwest({
+                url: block.rightsrc,
+                type: 'html',
+                success: (resp2) => {
+                    block.rightinnards = resp2.replace(/iframeMessenger.resize\(\)/g, "");
+
+                    //        console.log(archieml);
+                },
+                error: (err) => {
+                    console.log('plum' + err);
+                }
+            });
+
+
+        }
+
+    };
 
 
     var blocks = archieml.content;
@@ -88,7 +99,7 @@ function getinnards(archieml) {
         getiframe(block);
         if (archieml.content.indexOf(block) == archieml.content.length - 1) {
             console.log('last one');
-                      setTimeout(function () {
+            setTimeout(function () {
                 var html = template(archieml);
                 render(html);
             }, 3000);
